@@ -31,7 +31,7 @@ preferences {
         input "button1", "capability.button", title: "What button?", multiple: false
         input "minutes", "number", range: "1..*", title: "Minutes", required: true, defaultValue: 5
         input "lamp1","capability.switch",title: "lamp",required: true
-//        input "modes", "mode", title: "Only when mode is", multiple: true, required: false
+//         input "modes", "mode", title: "Only when mode is", multiple: true, required: false
 	}
 }
 
