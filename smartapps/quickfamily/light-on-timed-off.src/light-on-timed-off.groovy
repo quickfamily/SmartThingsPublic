@@ -28,10 +28,9 @@ preferences {
 	section("Timed Light Control") {
 		// Turns off light after X minutes unless already on
         // Triggered by motion sensor
-        input "button1", "capability.button", title: "What button?", multiple: false
+        input "minimote", "capability.button", title: "What button?", multiple: false
         input "minutes", "number", range: "1..*", title: "Minutes", required: true, defaultValue: 5
         input "lamp1","capability.switch",title: "lamp",required: true
-//        input "modes", "mode", title: "Only when mode is", multiple: true, required: false
 	}
 }
 
@@ -49,7 +48,32 @@ def updated() {
 }
 
 def initialize() {
-	// TODO: subscribe to attributes, devices, locations, etc.
+    log.debug "subscribe"
+    subscribe(minimote, "button", buttonPushedHandler)
 }
 
-// TODO: implement event handlers
+def buttonPushedHandler(evt) {
+		def buttonNumber = evt.data
+		def value = evt.value
+		log.debug "buttonEvent: $evt.name = $evt.value ($evt.data)"
+		log.debug "button: $buttonNumber, value: $value"
+			switch(buttonNumber) {
+				case ~/.*1.*/:
+		        	log.debug "number 1 pushed"
+					break
+				case ~/.*2.*/:
+		        	log.debug "number 2 pushed"
+					break
+				case ~/.*3.*/:
+		        	log.debug "number 3 pushed"
+					break
+				case ~/.*4.*/:
+		        	log.debug "number 4 pushed"
+			        lamp1.on()
+			        runIn(minutes*60, turnOff)
+					break
+			}
+}
+def turnOff() {
+	lamp1.off()
+}
