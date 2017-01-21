@@ -30,7 +30,7 @@ preferences {
         // Triggered by motion sensor
         input "minimote", "capability.button", title: "What button?", multiple: false
         input "minutes", "number", range: "1..*", title: "Minutes", required: true, defaultValue: 5
-        input "lamp1","capability.switch",title: "lamp",required: true
+        input "lamp1","capability.switch",title: "lamps",required: true, multiple: true
 	}
 }
 
