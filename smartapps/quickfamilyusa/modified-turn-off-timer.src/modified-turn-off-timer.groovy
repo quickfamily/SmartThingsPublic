@@ -30,7 +30,7 @@ preferences {
         // Triggered by motion sensor
         input "motion1", "capability.motionSensor", title: "What motion sensor?", multiple: false
         input "minutes", "number", range: "1..*", title: "Minutes", required: true, defaultValue: 5
-        input "lamp1","capability.switch",title: "lamp",required: true
+        input "lamp1","capability.switch",title: "lamp",required: true, multiple: true
 //        input "modes", "mode", title: "Only when mode is", multiple: true, required: false
 	}
 }
